@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout/LayoutSimples}">
+	
+
+<th:block layout:fragment="conteudo">
+	
+	<div class="aw-error-panel">
+		<h1 class="aw-error-panel__code">
+			<i class="fa  fa-location-arrow"></i>404
+		</h1>
+		
+		<h2 class="aw-error-panel__title">Página não encontrada</h2>
+		
+		<div class="aw-error-panel__description">
+			Desculpe, página que você tentou acessar não existe ou não foi encontrada, verifique se a URL está correta.  
+			Se você acha que isso é um engano, entre em contato com a gente.
+			<br/><br/>
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+	</div>
+
+</th:block>	
+	
+
+</html>

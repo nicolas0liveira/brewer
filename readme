@@ -1,0 +1,44 @@
+anotacoes para fazer deploy no heroku
+
+1. instalar o https://devcenter.heroku.com/articles/heroku-command-line
+2.logar no heroku, pelo CLI:
+
+$heroku login
+Enter your Heroku credentials.
+Email: adam@example.com
+Password (typing will be hidden):
+Authentication successful.
+
+
+2. no diretorio da aplicação, iniciar o heroku p(quando app nova):
+
+$heroku create nomeapp
+Creating app... done, nomeapp
+https://nomeapp.herokuapp.com/ | https://git.heroku.com/nomeapp.git
+
+3. ainda no dir da aplicacao
+3.1 iniciar o git:
+$git init 
+3.2 apontar um remote para usar o git
+$git remote add heroku https://git.heroku.com/ambrewer.git
+
+é possivel ver quais já existem:
+$git remote -v
+
+
+4. instalar um addons para heroku (no caso um banco postgre, jawsdb)
+$ heroku addons:create jawsdb
+apois ele criar é possivel ver dados de conexao por meio de:
+heroku config:get JAWSDB_URL
+
+5. setar variaveis de ambiente no heroku:
+heroku config:set SENDGRID_PASSWORD=senha
+heroku config:set AWS_ACCESS_KEY_ID=AAXHAASJLASBCIASD AWS_SECRET_ACCESS_KEY=Ik+K+wmpOXn0CTd7lw7WF3123A+AASD334
+
+5* para ver as variaveis cadastradas:
+heroku config
+
+
+---------------
+para compilar no maven o projeto com profile de produção: mvn clean package  -P<profile> (ativa o profile definido no pom)
+

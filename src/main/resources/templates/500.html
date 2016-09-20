@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{layout/LayoutSimples}">
+	
+
+<th:block layout:fragment="conteudo">
+	
+	<div class="aw-error-panel">
+		<h1 class="aw-error-panel__code">
+			<i class="fa  fa-rocket"></i>500
+		</h1>
+		
+		<h2 class="aw-error-panel__title">Erro no servidor =´(</h2>
+		
+		<div class="aw-error-panel__description">
+			Desculpe, algum erro aconteceu.
+			Se o problema persistir entre em contato.
+			<br/><br/>
+			<a href="javascript:history.back()" class="btn  btn-primary">Voltar para onde estava</a>
+		</div>
+	</div>
+
+</th:block>	
+	
+
+</html>
