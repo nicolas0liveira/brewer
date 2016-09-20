@@ -89,6 +89,7 @@ public class Mailer {
 				
 			}
 			
+			logger.info(" >> enviando email para " + (venda.getCliente()!= null ? venda.getCliente().getEmail() : "'sem email'"));
 			mailSender.send(mimeMessage);
 		} catch (MessagingException e) {
 			logger.error("Erro ao enviar e-mail", e);
