@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2016-09-21T19:57:21 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_vendas_emitidas" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4fe83952-112a-4777-bb65-814df77ab458">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Brewer - MySql Adapter2"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="Param_data_inicio" class="java.util.Date">
+		<parameterDescription><![CDATA[Data de inicio]]></parameterDescription>
+	</parameter>
+	<parameter name="Param_data_fim" class="java.util.Date">
+		<parameterDescription><![CDATA[Data de inicio]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+	  v.codigo as codigo_venda
+    , v.data_criacao  as data_criacao
+    , v.valor_total as valor_total
+    , c.nome as nome_cliente
+    , u.nome as nome_vendedor
+FROM venda v
+INNER JOIN cliente c ON (v.codigo_cliente = c.codigo)
+INNER JOIN usuario u ON (v.codigo_usuario = u.codigo)
+WHERE v.status = 'EMITIDA'
+AND v.data_criacao BETWEEN $P{Param_data_inicio}  and $P{Param_data_fim} 
+ORDER BY  v.data_criacao ASC ]]>
+	</queryString>
+	<field name="codigo_venda" class="java.lang.Long"/>
+	<field name="data_criacao" class="java.sql.Timestamp"/>
+	<field name="valor_total" class="java.math.BigDecimal"/>
+	<field name="nome_cliente" class="java.lang.String"/>
+	<field name="nome_vendedor" class="java.lang.String"/>
+	<variable name="valor_total1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="60" y="5" width="400" height="44" uuid="f45a97da-0751-4e32-b771-a28790a73b09"/>
+				<textElement textAlignment="Center">
+					<font size="26" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Vendas Emitidas]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45">
+			<rectangle>
+				<reportElement x="290" y="9" width="260" height="20" uuid="7d6cc527-2b64-4bc6-b031-3a900b3370a6"/>
+			</rectangle>
+			<textField>
+				<reportElement x="296" y="12" width="100" height="15" uuid="43da08f8-b494-4b10-a291-fda22c3df560"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{Param_data_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="12" width="100" height="15" uuid="203405c1-4768-4f74-8dbb-69a6d0b176d5"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{Param_data_fim}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="406" y="12" width="30" height="15" uuid="4a09e664-7bbb-49ac-b19b-12f1782bb60a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[até]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="80" height="21" uuid="852fecf4-4e7c-497f-8888-38f631412eba"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Criação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="150" y="0" width="130" height="21" uuid="e970b7a8-bc55-4489-b283-cbd13d35cc73"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vendedor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="280" y="0" width="170" height="21" uuid="890bb440-bbce-4201-86aa-71e27f511d7c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="450" y="0" width="100" height="21" uuid="291def13-fa13-4b95-88e7-3898b5c351d7"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="80" y="0" width="70" height="21" uuid="a8436c6b-6ba8-4f2f-abac-09d8d35201ad"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="24" width="555" height="1" uuid="dd7a7e6b-44b2-48e1-afcb-6222833a684a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="1" width="80" height="21" uuid="d1aaf7b2-4932-43ba-a2bc-a62122f42135"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{data_criacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="1" width="130" height="21" uuid="27a8fc6a-7ebc-402f-9972-99f6ed91d5ab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome_vendedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="1" width="170" height="21" uuid="76a3df1a-1d3c-4de8-838c-358fb376e06f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome_cliente}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00##;¤ (-#,##0.00##)">
+				<reportElement x="450" y="1" width="100" height="21" uuid="63258461-c4f4-400e-9864-3e48102b3dd9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{valor_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="1" width="70" height="21" uuid="1cc08c79-59e8-41ca-8825-711048287e2f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codigo_venda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="34">
+			<textField>
+				<reportElement x="385" y="10" width="170" height="20" uuid="12b3f8c2-e074-4ed4-9160-7c986438fae3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER} + " de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="30" splitType="Stretch">
+			<textField pattern="¤ #,##0.00##;¤ (-#,##0.00##)">
+				<reportElement x="385" y="9" width="170" height="21" uuid="6d6d6a81-46e7-449e-8bf4-6e06b34c6cf9"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{valor_total1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="4" width="555" height="1" uuid="ed59d0a8-ef72-4289-8644-fe7aa03adbfd">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
