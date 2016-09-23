@@ -312,6 +312,7 @@
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-jpa</artifactId>
 		    <version>${spring-data-jpa.version}</version>
+		    <scope>compile</scope>
 		</dependency>
 		
 		<!-- Jackson - JSON -->
@@ -407,6 +408,7 @@
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-s3</artifactId>
 			<version>${aws-java-sdk-s3.version}</version>
+			<scope>compile</scope>
 		</dependency>
 		
 		<!-- Apache Commons DBCP -->
