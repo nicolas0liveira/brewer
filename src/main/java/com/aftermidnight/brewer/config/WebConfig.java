@@ -68,7 +68,8 @@ public class WebConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 		this.applicationContext = applicationContext;
 	}
 	
-	@Bean public ViewResolver jasperReportsViewResolver(DataSource dataSource){
+	@Bean 
+	public ViewResolver jasperReportsViewResolver(DataSource dataSource){
 		JasperReportsViewResolver resolver = new JasperReportsViewResolver();
 		resolver.setPrefix("classpath:/relatorios/");
 		resolver.setSuffix(".jasper");

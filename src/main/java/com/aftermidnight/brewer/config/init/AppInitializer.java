@@ -12,6 +12,7 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 import com.aftermidnight.brewer.config.JPAConfig;
 import com.aftermidnight.brewer.config.MailConfig;
 import com.aftermidnight.brewer.config.S3Config;
+import com.aftermidnight.brewer.config.ScheduleConfig;
 import com.aftermidnight.brewer.config.SecurityConfig;
 import com.aftermidnight.brewer.config.ServiceConfig;
 import com.aftermidnight.brewer.config.WebConfig;
@@ -20,7 +21,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { JPAConfig.class, ServiceConfig.class, SecurityConfig.class, S3Config.class };
+		return new Class<?>[] { JPAConfig.class, ServiceConfig.class, SecurityConfig.class, S3Config.class, ScheduleConfig.class };
 	}
 
 	@Override
@@ -56,7 +57,7 @@ public class AppInitializer extends AbstractAnnotationConfigDispatcherServletIni
 	@Override
 	public void onStartup(ServletContext servletContext) throws ServletException {
 		super.onStartup(servletContext);
-		servletContext.setInitParameter("spring.profiles.default", "prod");// definindo o profile default
+		servletContext.setInitParameter("spring.profiles.default", "local");// definindo o profile default
 		
 		//para alterar setar no enviroment do servidor: spring.profiles.active , com valor = local
 	}

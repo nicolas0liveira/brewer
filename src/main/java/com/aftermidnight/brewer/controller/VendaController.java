@@ -111,7 +111,7 @@ public class VendaController {
 	}
 
 	@PostMapping(value = "/nova", params = "enviarEmail")
-	public ModelAndView enviarEmail(Venda venda, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioSistema usuarioLogadoSistema) {
+	public ModelAndView emitirEnviarEmail(Venda venda, BindingResult result, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioSistema usuarioLogadoSistema) {
 		validarVenda(venda, result);
 		
 		if(result.hasErrors()){
@@ -120,7 +120,7 @@ public class VendaController {
 		
 		venda.setUsuario(usuarioLogadoSistema.getUsuario());
 		
-		venda = cadastroVendaService.salvar(venda);
+		venda = cadastroVendaService.emitir(venda);
 		
 		mailer.enviar(venda);
 		

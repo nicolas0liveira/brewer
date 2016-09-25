@@ -47,10 +47,10 @@ public class CadastroVendaService {
 
 	
 	@Transactional
-	public void emitir(Venda venda) {
+	public Venda emitir(Venda venda) {
 		venda.setStatus(StatusVenda.EMITIDA);
 		publisher.publishEvent(new VendaEvent(venda));
-		salvar(venda);
+		return salvar(venda);
 	}
 
 	@Transactional
