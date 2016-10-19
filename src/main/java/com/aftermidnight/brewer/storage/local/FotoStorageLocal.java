@@ -19,8 +19,7 @@ import com.aftermidnight.brewer.storage.FotoStorage;
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.name.Rename;
 
-
-@Profile("local")
+@Profile("localfotostorage")
 @Component
 public class FotoStorageLocal implements FotoStorage {
 	

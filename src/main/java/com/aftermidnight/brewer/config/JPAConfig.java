@@ -29,32 +29,6 @@ import com.aftermidnight.brewer.repository.Cervejas;
 @EnableJpaRepositories(basePackageClasses = Cervejas.class, enableDefaultTransactions = false, repositoryImplementationPostfix="Impl")
 @EnableTransactionManagement
 public class JPAConfig {
-
-	@Profile("local")
-	@Bean
-	public DataSource dataSource() {
-		JndiDataSourceLookup dataSourceLookup = new JndiDataSourceLookup();
-		dataSourceLookup.setResourceRef(true);
-		return dataSourceLookup.getDataSource("jdbc/brewerDB");
-	}
-	
-	@Profile("prod")
-	@Bean
-	public DataSource dataSourceJawsHeroku() throws URISyntaxException {
-		URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
-
-	    String username = jdbUri.getUserInfo().split(":")[0];
-	    String password = jdbUri.getUserInfo().split(":")[1];
-	    String port = String.valueOf(jdbUri.getPort());
-	    String jdbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
-	    
-	    BasicDataSource dataSource = new BasicDataSource();
-	    dataSource.setUrl(jdbUrl);
-	    dataSource.setUsername(username);
-	    dataSource.setPassword(password);
-	    dataSource.setInitialSize(10);
-	    return dataSource;
-	}
 	
 	@Bean
 	public JpaVendorAdapter jpaVendorAdapter() {
